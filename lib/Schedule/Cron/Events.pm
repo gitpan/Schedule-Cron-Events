@@ -7,7 +7,7 @@ use Date::Manip;
 use Time::Local;
 use vars qw($VERSION @monthlens);
 
-($VERSION) = ('$Revision: 1.6 $' =~ /([\d\.]+)/ );
+($VERSION) = ('$Revision: 1.7 $' =~ /([\d\.]+)/ );
 @monthlens = ( 0, 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31 );
 
 ## PUBLIC INTERFACE
@@ -397,6 +397,8 @@ Here is a sample of the output produced by that code:
 	Event did start at  1:20:00 on 26 Oct, 1985
 	...or that can be expressed as 499134000 seconds which is Sat Oct 26 01:20:00 1985
 
+Note that results will vary according to your local time and timezone.
+
 =head1 DESCRIPTION
 
 Given a line from a crontab, tells you the time at which cron will next run the line, or when the last event
@@ -439,7 +441,7 @@ a number 0 .. 31
 
 a number 0 .. 11 - January is *0*, December is *11*
 
-=item year
+=item * year
 
 the desired year number *minus 1900*
 

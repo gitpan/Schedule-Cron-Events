@@ -2,11 +2,16 @@
 use strict;
 use lib './lib';
 use Test;
+
+BEGIN {
+	$ENV{'TZ'} ||= 'GMT';
+}
+
 use Schedule::Cron::Events;
 use Time::Local;
 use Data::Dumper;
 
-# $Id: 01base.t,v 1.2 2002/09/10 23:21:53 piers Exp $
+# $Id: 01base.t,v 1.3 2002/09/25 23:47:45 piers Exp $
 
 #*Schedule::Cron::Events::TRACE = sub {
 #	my $str = shift;
