@@ -3,11 +3,10 @@ package Schedule::Cron::Events;
 use strict;
 use Carp 'confess';
 use Set::Crontab;
-use Date::Manip;
 use Time::Local;
 use vars qw($VERSION @monthlens);
 
-($VERSION) = ('$Revision: 1.7 $' =~ /([\d\.]+)/ );
+($VERSION) = ('$Revision: 1.8 $' =~ /([\d\.]+)/ );
 @monthlens = ( 0, 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31 );
 
 ## PUBLIC INTERFACE
@@ -226,8 +225,7 @@ sub getdate {
 sub set_f {
 	my $self = shift || confess "Must be called as a method";
 
-	Date::Manip::Date_Init();
-	my $flag = Date::Manip::Date_LeapYear($self->{'pyear'});
+	my $flag = _isLeapYear($self->{'pyear'});
 	my $monthnum = $self->{'e'}[$self->{'pa'}];
 	my $maxday = $monthlens[$monthnum];
 	if ($monthnum == 2) { $maxday += $flag; }
@@ -238,7 +236,7 @@ sub set_f {
 	}
 	
 	# get which weekday is the first of the month
-	my $startday = Date::Manip::Date_DayOfWeek($monthnum, 1, $self->{'pyear'});
+	my $startday = _DayOfWeek($monthnum, 1, $self->{'pyear'});
 	# add in, if needed, the selected weekdays
 	foreach my $daynum (@{ $self->{'ranges'}{'weekdays'} }) {
 		my $offset = $daynum - $startday; # 0 - 6 = -6; start on saturday, want a sunday 
@@ -335,6 +333,30 @@ sub dec_e {
 		$self->dec_e;
 	}
 	$self->{'pb'} = $#{$self->{'f'}};
+}
+
+# These two routines courtesy of B Paulsen
+sub _isLeapYear {
+	my $year = shift;
+	return  !($year % 400) || ( !( $year % 4 ) && ( $year % 100 ) ) ? 1 : 0;
+}
+
+sub _DayOfWeek {
+	my ( $month, $day, $year ) = @_;
+	
+	my $flag = _isLeapYear( $year );
+	my @months = (
+		$flag ? 0 : 1,
+		$flag ? 3 : 4,
+		4, 0, 2, 5, 0, 3, 6, 1, 4, 6 );
+	my @century = ( 4, 2, 0, 6 );
+	
+	my $dow = $year % 100;
+	$dow += int( $dow / 4 );
+	$dow += $day + $months[$month-1];
+	$dow += $century[ ( int($year/100) - 1 ) % 4 ];
+	
+	return ($dow-1) % 7;
 }
 
 sub TRACE {}
@@ -502,7 +524,7 @@ undef, not a fatal error. If you supply a line like 'foo bar */15 baz qux /bin/f
 
 =head1 DEPENDENCIES
 
-Set::Crontab, Date::Manip, Time::Local, Carp
+Set::Crontab, Time::Local, Carp. Date::Manip is no longer required thanks to B Paulsen.
 
 =head1 COPYRIGHT
 

@@ -17,7 +17,7 @@ make install
 Other systems will have their own way of doing things, but this package
 basically consists of a single pure-perl library.
 
-Depends on Set::Crontab, Date::Manip, and Time::Local
+Depends on Set::Crontab and Time::Local
 
 P Kent pause at selsyn.co.uk
 

@@ -1,6 +1,6 @@
 use ExtUtils::MakeMaker;
 
-# $Id: Makefile.PL,v 1.3 2002/09/11 23:40:35 piers Exp $
+# $Id: Makefile.PL,v 1.4 2003/03/05 19:57:13 piers Exp $
 
 WriteMakefile(
 	AUTHOR		=> 'P Kent (pause@selsyn.co.uk)',
@@ -13,7 +13,6 @@ WriteMakefile(
 	},
 	VERSION_FROM	=> 'lib/Schedule/Cron/Events.pm',
 	PREREQ_PM	=> {
-				Date::Manip => 0,
 				Time::Local => 0,
 				Set::Crontab => 0,
 			},
