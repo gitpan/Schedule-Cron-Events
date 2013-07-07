@@ -1,23 +1,26 @@
---- #YAML:1.0
-name:               Schedule-Cron-Events
-version:            1.9
-abstract:           Find out the times at which a cron entry would run, past or future, relative to any given time
+---
+abstract: 'Find out the times at which a cron entry would run, past or future, relative to any given time'
 author:
-    - P Kent (pause@selsyn.co.uk)
-license:            unknown
-distribution_type:  module
-configure_requires:
-    ExtUtils::MakeMaker:  0
+  - 'P Kent (pause@selsyn.co.uk)'
 build_requires:
-    ExtUtils::MakeMaker:  0
-requires:
-    Set::Crontab:  0
-    Time::Local:   0
-no_index:
-    directory:
-        - t
-        - inc
-generated_by:       ExtUtils::MakeMaker version 6.55_02
+  DateTime: 0
+  ExtUtils::MakeMaker: 0
+  Test::Deep: 0
+  Test::More: 0
+configure_requires:
+  ExtUtils::MakeMaker: 0
+dynamic_config: 1
+generated_by: 'ExtUtils::MakeMaker version 6.68, CPAN::Meta::Converter version 2.112621'
+license: unknown
 meta-spec:
-    url:      http://module-build.sourceforge.net/META-spec-v1.4.html
-    version:  1.4
+  url: http://module-build.sourceforge.net/META-spec-v1.4.html
+  version: 1.4
+name: Schedule-Cron-Events
+no_index:
+  directory:
+    - t
+    - inc
+requires:
+  Set::Crontab: 0
+  Time::Local: 0
+version: 1.10
