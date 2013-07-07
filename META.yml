@@ -23,4 +23,4 @@ no_index:
 requires:
   Set::Crontab: 0
   Time::Local: 0
-version: 1.10
+version: 1.91
