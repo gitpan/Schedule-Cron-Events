@@ -3,7 +3,6 @@ abstract: 'Find out the times at which a cron entry would run, past or future, r
 author:
   - 'P Kent (pause@selsyn.co.uk)'
 build_requires:
-  DateTime: 0
   ExtUtils::MakeMaker: 0
   Test::Deep: 0
   Test::More: 0
@@ -23,4 +22,4 @@ no_index:
 requires:
   Set::Crontab: 0
   Time::Local: 0
-version: 1.92
+version: 1.93

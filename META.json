@@ -22,7 +22,6 @@
    "prereqs" : {
       "build" : {
          "requires" : {
-            "DateTime" : 0,
             "ExtUtils::MakeMaker" : 0,
             "Test::Deep" : 0,
             "Test::More" : 0
@@ -41,5 +40,5 @@
       }
    },
    "release_status" : "stable",
-   "version" : "1.92"
+   "version" : "1.93"
 }
